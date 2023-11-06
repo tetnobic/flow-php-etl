@@ -303,10 +303,6 @@ final class NativeEntryFactory implements EntryFactory
 
     private function isJson(string $string) : bool
     {
-        if ('{' !== $string[0] && '[' !== $string[0]) {
-            return false;
-        }
-
         if (
             (!\str_starts_with($string, '{') || !\str_ends_with($string, '}'))
             && (!\str_starts_with($string, '[') || !\str_ends_with($string, ']'))
@@ -355,10 +351,6 @@ final class NativeEntryFactory implements EntryFactory
 
     private function isXML(string $string) : bool
     {
-        if ('<' !== $string[0]) {
-            return false;
-        }
-
         if (\preg_match('/<(.+?)>(.+?)<\/(.+?)>/', $string) === 1) {
             try {
                 \libxml_use_internal_errors(true);
